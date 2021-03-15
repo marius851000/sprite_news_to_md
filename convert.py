@@ -203,11 +203,11 @@ class SpriteCollabChangeExplorer:
             
         return result
 
-def generate_range(explorer, start, end, tabulation):
+def generate_range(explorer, start, last, tabulation):
     commits = []
-    for commit in explorer.repo.iter_commits(end):
+    for commit in explorer.repo.iter_commits(start):
         commits.append(commit.hexsha)
-        if commit.hexsha == start:
+        if commit.hexsha == last:
             break
     
     result = ""
@@ -218,6 +218,7 @@ def generate_range(explorer, start, end, tabulation):
     
 
 tool = SpriteCollabChangeExplorer("/home/marius/SpriteCollab/")
-r = generate_range(tool, "a90126103d02b4df16a73c7da738649f7bbfebf9", "865b909c8b3038dd3778e561f1733a808bf04f06", "-")
+#r = generate_range(tool, "a90126103d02b4df16a73c7da738649f7bbfebf9", "865b909c8b3038dd3778e561f1733a808bf04f06", "-")
+r = generate_range(tool, "0f5b57874b3bca65b67d51b4628ff52c33eca3a3", "34e5b8a144dfdf6f6ad1683147e356679b611853", "-") #this is invalid
 print(r)
 #print(tool.generate_md_for_change("a90126103d02b4df16a73c7da738649f7bbfebf9", "--"))
